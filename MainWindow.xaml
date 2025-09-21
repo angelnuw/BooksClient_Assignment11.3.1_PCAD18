@@ -1,0 +1,56 @@
+﻿<Window x:Class="BooksClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Books Client" Height="520" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="Books Client → calls Web API"
+                   FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Inputs + buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Width="200" Margin="0,0,10,0">
+                <TextBlock Text="ISBN"/>
+                <TextBox x:Name="txtISBN"/>
+            </StackPanel>
+            <StackPanel Width="220" Margin="0,0,10,0">
+                <TextBlock Text="Name"/>
+                <TextBox x:Name="txtName"/>
+            </StackPanel>
+            <StackPanel Width="200" Margin="0,0,10,0">
+                <TextBlock Text="Author"/>
+                <TextBox x:Name="txtAuthor"/>
+            </StackPanel>
+            <StackPanel Width="240" Margin="0,0,10,0">
+                <TextBlock Text="Description"/>
+                <TextBox x:Name="txtDescription"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+                <Button Content="Add"     Width="70"  Margin="0,0,8,0" Click="Add_Click"/>
+                <Button Content="Update"  Width="90"  Margin="0,0,8,0" Click="Update_Click"/>
+                <Button Content="Delete"  Width="90"  Margin="0,0,8,0" Click="Delete_Click"/>
+                <Button Content="Refresh" Width="90" Click="Refresh_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Data grid -->
+        <DataGrid x:Name="BooksGrid" Grid.Row="2" Margin="0,10,0,0"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionUnit="FullRow"
+                  MouseDoubleClick="BooksGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="150"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="250"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="200"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
